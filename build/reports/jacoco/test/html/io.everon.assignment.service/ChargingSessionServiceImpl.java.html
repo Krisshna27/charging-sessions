@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ChargingSessionServiceImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">assignment</a> &gt; <a href="index.source.html" class="el_package">io.everon.assignment.service</a> &gt; <span class="el_source">ChargingSessionServiceImpl.java</span></div><h1>ChargingSessionServiceImpl.java</h1><pre class="source lang-java linenums">package io.everon.assignment.service;
+
+import io.everon.assignment.dto.ChargingSessionDto;
+import io.everon.assignment.dto.ChargingSessionSummaryDto;
+import io.everon.assignment.dto.ChargingStatusEnum;
+import io.everon.assignment.dto.ChargingSessionSummaryCollector;
+import io.everon.assignment.exception.NotFoundException;
+import io.everon.assignment.repository.SessionsRepository;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Service;
+
+import java.time.LocalDateTime;
+import java.util.List;
+import java.util.UUID;
+
+import static java.util.Objects.isNull;
+
+<span class="fc" id="L18">@Slf4j</span>
+@Service
+public class ChargingSessionServiceImpl implements ChargingSessionService {
+
+    private final SessionsRepository repository;
+
+<span class="fc" id="L24">    public ChargingSessionServiceImpl(SessionsRepository repository) {</span>
+<span class="fc" id="L25">        this.repository = repository;</span>
+<span class="fc" id="L26">    }</span>
+
+    @Override
+    public ChargingSessionDto createChargingSession(String stationId) {
+<span class="fc" id="L30">        ChargingSessionDto createdSession = ChargingSessionDto.builder()</span>
+<span class="fc" id="L31">                .id(UUID.randomUUID().toString())</span>
+<span class="fc" id="L32">                .startedAt(LocalDateTime.now())</span>
+<span class="fc" id="L33">                .stationId(stationId)</span>
+<span class="fc" id="L34">                .status(ChargingStatusEnum.IN_PROGRESS)</span>
+<span class="fc" id="L35">                .build();</span>
+<span class="fc" id="L36">      return repository.save(createdSession);</span>
+    }
+
+    @Override
+    public List&lt;ChargingSessionDto&gt; getAllChargingSessions() {
+<span class="fc" id="L41">        return repository.findAll();</span>
+    }
+
+    @Override
+    public ChargingSessionDto stopChargingSession(final String sessionId) {
+
+<span class="fc" id="L47">        ChargingSessionDto existingChargingSession = repository.findById(sessionId);</span>
+
+<span class="fc bfc" id="L49" title="All 2 branches covered.">        if (isNull(existingChargingSession)) {</span>
+<span class="fc" id="L50">            throw new NotFoundException(&quot;Charging session for the given sessionId not found&quot;);</span>
+        }
+
+        // Found session is already in FINISHED status
+<span class="fc bfc" id="L54" title="All 2 branches covered.">        if(existingChargingSession.getStatus().equals(ChargingStatusEnum.FINISHED)){</span>
+<span class="fc" id="L55">            log.debug(&quot;Session with id:{} is already marked as finished, update ignored&quot;, sessionId);</span>
+<span class="fc" id="L56">            return existingChargingSession;</span>
+        }
+
+<span class="fc" id="L59">        existingChargingSession.setStoppedAt(LocalDateTime.now());</span>
+<span class="fc" id="L60">        existingChargingSession.setStatus(ChargingStatusEnum.FINISHED);</span>
+
+<span class="fc" id="L62">        return repository.save(existingChargingSession);</span>
+    }
+
+    @Override
+    public ChargingSessionSummaryDto getChargingSummary(int timeInMinutes) {
+
+<span class="fc" id="L68">        ChargingSessionSummaryCollector stat = repository.getSessionSummaryWithinTimeLimit(timeInMinutes);</span>
+
+<span class="fc" id="L70">        return ChargingSessionSummaryDto.builder()</span>
+<span class="fc" id="L71">                .totalCount(Math.addExact((long)stat.getStartedSessions().getSum(), (long)stat.getStoppedSessions().getSum()))</span>
+<span class="fc" id="L72">                .startedCount((long)stat.getStartedSessions().getSum())</span>
+<span class="fc" id="L73">                .stoppedCount((long)stat.getStoppedSessions().getSum())</span>
+<span class="fc" id="L74">                .build();</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

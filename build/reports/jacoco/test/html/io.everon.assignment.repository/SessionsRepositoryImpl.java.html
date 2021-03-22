@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>SessionsRepositoryImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">assignment</a> &gt; <a href="index.source.html" class="el_package">io.everon.assignment.repository</a> &gt; <span class="el_source">SessionsRepositoryImpl.java</span></div><h1>SessionsRepositoryImpl.java</h1><pre class="source lang-java linenums">package io.everon.assignment.repository;
+
+import io.everon.assignment.datasource.InMemDataSource;
+import io.everon.assignment.dto.ChargingSessionDto;
+import io.everon.assignment.dto.ChargingSessionSummaryCollector;
+import io.everon.assignment.dto.ChargingStatusEnum;
+import org.springframework.stereotype.Repository;
+
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.function.BiPredicate;
+
+@Repository
+<span class="fc" id="L15">public class SessionsRepositoryImpl implements SessionsRepository {</span>
+
+    @Override
+    public ChargingSessionDto save(ChargingSessionDto objChargingSessionDto) {
+<span class="fc" id="L19">        InMemDataSource.getSessions().put(objChargingSessionDto.getId(), objChargingSessionDto);</span>
+<span class="fc" id="L20">        return objChargingSessionDto;</span>
+    }
+
+    @Override
+    public ChargingSessionDto findById(String id) {
+<span class="fc" id="L25">        return InMemDataSource.getSessions().get(id);</span>
+    }
+
+    @Override
+    public ChargingSessionSummaryCollector getSessionSummaryWithinTimeLimit(int timeInMinutes) {
+<span class="fc" id="L30">        LocalDateTime timeLimit = LocalDateTime.now().minusMinutes(timeInMinutes);</span>
+<span class="fc" id="L31">        return InMemDataSource.getSessions().values().stream()</span>
+<span class="fc" id="L32">                .filter(chargingSessionDto -&gt; compareDate.test(chargingSessionDto, timeLimit))</span>
+<span class="fc" id="L33">                .collect(ChargingSessionSummaryCollector.collector(timeLimit));</span>
+    }
+
+<span class="fc" id="L36">    private final BiPredicate&lt;ChargingSessionDto, LocalDateTime&gt; compareDate =</span>
+            (chargingSessionDto, currentTime) -&gt;
+<span class="fc bfc" id="L38" title="All 2 branches covered.">                    isSessionStartTimeAfterTimeLimit(chargingSessionDto, currentTime)</span>
+<span class="pc bpc" id="L39" title="1 of 2 branches missed.">                            || isSessionFinishedAfterTimeLimit(chargingSessionDto, currentTime);</span>
+
+    private boolean isSessionStartTimeAfterTimeLimit(ChargingSessionDto chargingSessionDto, LocalDateTime currentTime) {
+<span class="fc" id="L42">        return chargingSessionDto.getStartedAt().isAfter(currentTime);</span>
+    }
+
+    private boolean isSessionFinishedAfterTimeLimit(ChargingSessionDto chargingSessionDto, LocalDateTime currentTime) {
+<span class="pc bpc" id="L46" title="1 of 2 branches missed.">        return chargingSessionDto.getStatus().equals(ChargingStatusEnum.FINISHED) &amp;&amp;</span>
+<span class="pc bpc" id="L47" title="1 of 2 branches missed.">                chargingSessionDto.getStoppedAt().isAfter(currentTime);</span>
+    }
+
+    @Override
+    public List&lt;ChargingSessionDto&gt; findAll() {
+<span class="fc" id="L52">        return new ArrayList&lt;&gt;(InMemDataSource.getSessions().values());</span>
+    }
+
+    @Override
+    public void delete(String id) {
+<span class="fc" id="L57">        InMemDataSource.getSessions().remove(id);</span>
+<span class="fc" id="L58">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

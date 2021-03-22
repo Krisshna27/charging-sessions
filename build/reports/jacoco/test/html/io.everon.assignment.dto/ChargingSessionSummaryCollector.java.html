@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ChargingSessionSummaryCollector.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">assignment</a> &gt; <a href="index.source.html" class="el_package">io.everon.assignment.dto</a> &gt; <span class="el_source">ChargingSessionSummaryCollector.java</span></div><h1>ChargingSessionSummaryCollector.java</h1><pre class="source lang-java linenums">package io.everon.assignment.dto;
+
+import lombok.Getter;
+import lombok.ToString;
+
+import java.time.LocalDateTime;
+import java.util.DoubleSummaryStatistics;
+import java.util.function.BiPredicate;
+import java.util.stream.Collector;
+
+import static java.util.Objects.nonNull;
+
+
+/**
+ * Custom collector consumer {@link java.util.stream.Collector} to allow for counting of in-progress and finished sessions��
+ *
+ * @author Krisshna Kumar Mone
+ * @see Collector
+ */
+<span class="nc" id="L20">@ToString</span>
+@Getter
+<span class="fc" id="L22">public class ChargingSessionSummaryCollector {</span>
+<span class="fc" id="L23">    private DoubleSummaryStatistics startedSessions = new DoubleSummaryStatistics();</span>
+<span class="fc" id="L24">    private DoubleSummaryStatistics stoppedSessions = new DoubleSummaryStatistics();</span>
+
+<span class="pc" id="L26">    private final BiPredicate&lt;LocalDateTime, LocalDateTime&gt; isSessionWithinTimeLimit = LocalDateTime::isAfter;</span>
+
+    /**
+     *To collect the count of in-progress and finished sessions within the time limit specified.
+     *
+     * @param timeLimit This param specifies the records created or modified after the given time value
+     * @return ChargingSessionSummaryCollector
+     */
+    public static Collector&lt;ChargingSessionDto, ?, ChargingSessionSummaryCollector&gt; collector(LocalDateTime timeLimit) {
+<span class="fc" id="L35">        return Collector.of(ChargingSessionSummaryCollector::new,</span>
+<span class="fc" id="L36">                (chargingSessionSummaryCollector, session) -&gt; chargingSessionSummaryCollector.accept(session, timeLimit),</span>
+                ChargingSessionSummaryCollector::combine);
+    }
+
+    private void accept(ChargingSessionDto session, LocalDateTime timeLimit) {
+<span class="fc bfc" id="L41" title="All 2 branches covered.">        startedSessions.accept(isSessionWithinTimeLimit.test(session.getStartedAt(), timeLimit)? 1 : 0);</span>
+<span class="pc bpc" id="L42" title="1 of 2 branches missed.">        if(nonNull(session.getStoppedAt())) {</span>
+<span class="pc bpc" id="L43" title="1 of 2 branches missed.">            stoppedSessions.accept(isSessionWithinTimeLimit.test(session.getStoppedAt(), timeLimit) ? 1 : 0);</span>
+        }
+<span class="fc" id="L45">    }</span>
+
+    private ChargingSessionSummaryCollector combine(ChargingSessionSummaryCollector stat) {
+<span class="nc" id="L48">        startedSessions.combine(stat.startedSessions);</span>
+<span class="nc" id="L49">        stoppedSessions.combine(stat.stoppedSessions);</span>
+<span class="nc" id="L50">        return this;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

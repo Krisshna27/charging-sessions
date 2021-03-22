@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MvcExceptionHandler.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">assignment</a> &gt; <a href="index.source.html" class="el_package">io.everon.assignment.exception</a> &gt; <span class="el_source">MvcExceptionHandler.java</span></div><h1>MvcExceptionHandler.java</h1><pre class="source lang-java linenums">package io.everon.assignment.exception;
+
+import io.everon.assignment.dto.ErrorResponseDto;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindException;
+import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+
+import javax.validation.ConstraintViolationException;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+
+import static java.util.Collections.singletonList;
+import static org.springframework.http.HttpStatus.BAD_REQUEST;
+import static org.springframework.http.HttpStatus.NOT_FOUND;
+
+/**
+ * Intercepts declared exceptions and provides custom error messages with appropriate HTTP response codes. &lt;br&gt;
+ *
+ * @author Krisshna Kumar Mone
+ */
+<span class="fc" id="L24">@Slf4j</span>
+@ControllerAdvice
+<span class="fc" id="L26">public class MvcExceptionHandler {</span>
+
+    /**
+     * Handle constraint violations
+     * Responds with HTTP status 400 (BAD REQUEST)
+     *
+     * @param ex javax.validation.ConstraintViolationException
+     * @return List of violation error messages
+     */
+    @ExceptionHandler(ConstraintViolationException.class)
+    public ResponseEntity&lt;ErrorResponseDto&gt; validationErrorHandler(ConstraintViolationException ex) {
+<span class="nc" id="L37">        List&lt;String&gt; errorsList = new ArrayList&lt;&gt;(ex.getConstraintViolations().size());</span>
+<span class="nc" id="L38">        ex.getConstraintViolations().forEach(constraintViolation -&gt;</span>
+<span class="nc" id="L39">                errorsList.add(constraintViolation.getPropertyPath() + &quot; : &quot; + constraintViolation.getMessage()));</span>
+
+<span class="nc" id="L41">        ErrorResponseDto errorMessage = ErrorResponseDto.builder().errors(errorsList)</span>
+<span class="nc" id="L42">                .status(BAD_REQUEST.toString()).timeStamp(LocalDateTime.now().toString()).build();</span>
+
+<span class="nc" id="L44">        log.error(&quot;Constraint violations: {}&quot;, errorMessage);</span>
+
+<span class="nc" id="L46">        return ResponseEntity.status(BAD_REQUEST).body(errorMessage);</span>
+    }
+
+    /**
+     *Invalid parameter and request payload attributes will be treated as bind errors.
+     *
+     * @param ex org.springframework.validation.BindException
+     * @return List of violation error messages
+     */
+    @ExceptionHandler(BindException.class)
+    public ResponseEntity&lt;ErrorResponseDto&gt; bindErrorHandler(BindException ex) {
+<span class="fc" id="L57">        List&lt;String&gt; errorsList = new ArrayList&lt;&gt;(ex.getAllErrors().size());</span>
+<span class="fc" id="L58">        ex.getBindingResult().getFieldErrors().forEach( fieldError -&gt;</span>
+<span class="fc" id="L59">                errorsList.add(fieldError.getField() +&quot; : &quot; + fieldError.getDefaultMessage()));</span>
+
+<span class="fc" id="L61">        ex.getBindingResult().getGlobalErrors().forEach( fieldError -&gt;</span>
+<span class="nc" id="L62">                errorsList.add(fieldError.getObjectName() +&quot; : &quot; + fieldError.getDefaultMessage()));</span>
+
+<span class="fc" id="L64">        ErrorResponseDto errorMessage = ErrorResponseDto.builder().errors(errorsList)</span>
+<span class="fc" id="L65">                .status(BAD_REQUEST.toString()).timeStamp(LocalDateTime.now().toString()).build();</span>
+
+<span class="fc" id="L67">        log.error(&quot;Bind exception: {}&quot;, errorMessage);</span>
+
+<span class="fc" id="L69">        return ResponseEntity.status(BAD_REQUEST).body(errorMessage);</span>
+    }
+
+    /**
+     * If a requested resource is not found, NotFoundException would be thrown.&lt;br&gt;
+     * This handler handles the exception and responds with HTTP status 404 (NOT_FOUND)
+     *
+     * @param ex NotFoundException thrown from the service implementations
+     * @return List of violation error messages
+     * @see NotFoundException
+     */
+    @ExceptionHandler(NotFoundException.class)
+    public ResponseEntity&lt;ErrorResponseDto&gt; notFoundExceptionHandler(NotFoundException ex) {
+
+<span class="nc" id="L83">        ErrorResponseDto errorMessage = ErrorResponseDto.builder().errors(singletonList(ex.getMessage()))</span>
+<span class="nc" id="L84">                .status(NOT_FOUND.toString()).timeStamp(LocalDateTime.now().toString()).build();</span>
+
+<span class="nc" id="L86">        log.error(&quot;NotFoundException : {}&quot;, errorMessage);</span>
+
+<span class="nc" id="L88">        return ResponseEntity.status(NOT_FOUND).body(errorMessage);</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

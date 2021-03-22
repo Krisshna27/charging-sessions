@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="io.everon.assignment.service.ChargingSessionServiceImplTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2021-03-22T22:56:54" hostname="Krisshnas-MBP.home" time="0.03">
+  <properties/>
+  <testcase name="stopChargingSessionWithException()" classname="io.everon.assignment.service.ChargingSessionServiceImplTest" time="0.024"/>
+  <testcase name="stopChargingSession()" classname="io.everon.assignment.service.ChargingSessionServiceImplTest" time="0.003"/>
+  <testcase name="getChargingSession()" classname="io.everon.assignment.service.ChargingSessionServiceImplTest" time="0.0"/>
+  <testcase name="createSession()" classname="io.everon.assignment.service.ChargingSessionServiceImplTest" time="0.0"/>
+  <testcase name="stopChargingSessionMultipleUpdate()" classname="io.everon.assignment.service.ChargingSessionServiceImplTest" time="0.002"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

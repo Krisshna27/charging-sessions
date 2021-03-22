@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ChargingSessionController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">assignment</a> &gt; <a href="index.source.html" class="el_package">io.everon.assignment.controller</a> &gt; <span class="el_source">ChargingSessionController.java</span></div><h1>ChargingSessionController.java</h1><pre class="source lang-java linenums">package io.everon.assignment.controller;
+
+import io.everon.assignment.dto.ChargingSessionDto;
+import io.everon.assignment.dto.ChargingSessionSummaryDto;
+import io.everon.assignment.service.ChargingSessionService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
+import java.util.List;
+
+import static org.springframework.http.HttpStatus.CREATED;
+import static org.springframework.http.HttpStatus.OK;
+
+/**
+ * This controller provides REST endpoints to manage charging sessions at an EV Charging point
+ * Apart from providing CRUD operations this class also provides summary of the charging sessions.
+ * &lt;br&gt;
+ * &lt;br&gt;
+ *
+ * @author Krisshna Kumar Mone
+ */
+@Validated
+@RestController
+<span class="fc" id="L27">@RequiredArgsConstructor</span>
+@RequestMapping(&quot;/chargingSessions&quot;)
+public class ChargingSessionController {
+
+    private final ChargingSessionService sessionManager;
+
+    /**
+     * This endpoint allows for creation of new charging session.
+     * &lt;p&gt;
+     * Returns one of the following status codes&lt;br&gt;
+     * 201: successful creation of session&lt;br&gt;
+     * 400: Mandatory field or request payload is missing&lt;br&gt;
+     * &lt;/p&gt;
+     *
+     * @param createSessionPayload Represents the session to be created for a specific charging station.
+     *                             &lt;i&gt;stationId&lt;/i&gt; within this payload is mandatory.
+     *                             &lt;br&gt;
+     * @return Response entity of newly created session object
+     * @see io.everon.assignment.dto.ChargingSessionDto
+     */
+    @PostMapping
+    public ResponseEntity&lt;ChargingSessionDto&gt; createChargingSession(@RequestBody @Valid ChargingSessionDto createSessionPayload) {
+<span class="fc" id="L49">        return ResponseEntity.status(CREATED).body(sessionManager.createChargingSession(createSessionPayload.getStationId()));</span>
+    }
+
+    /**
+     * This endpoint allows for fetching all the charging sessions.
+     * &lt;br&gt;
+     * &lt;br&gt;
+     * Returns the following status code&lt;br&gt;
+     * 200: Successfully fetched all the sessions. If no sessions are present then an empty array is returned
+     * &lt;br&gt;
+     * &lt;br&gt;
+     *
+     * @return Response entity of list of sessions
+     * @see io.everon.assignment.dto.ChargingSessionDto
+     */
+    @GetMapping
+    public ResponseEntity&lt;List&lt;ChargingSessionDto&gt;&gt; getChargingSessions() {
+<span class="fc" id="L66">        return ResponseEntity.status(OK).body(sessionManager.getAllChargingSessions());</span>
+    }
+
+    /**
+     * This endpoint stops an in-progress charging session.
+     * &lt;p&gt;
+     * Considering the idempotent nature of HTTP PUT.&lt;br&gt;
+     * In case of already closed sessions, no modification is made, rather existing session is returned.&lt;br&gt;
+     * &lt;br&gt;
+     * Returns the following status code &lt;br&gt;
+     * 200: Successfully updated the charging session &lt;br&gt;
+     * 404: Session not found inorder to close the in_progress session &lt;br&gt;
+     * &lt;br&gt;
+     * &lt;/p&gt;
+     *
+     * @param sessionId uniquely identifies an session
+     *                  &lt;br&gt;
+     * @return ChargingSessionDTO
+     * @see io.everon.assignment.dto.ChargingSessionDto
+     */
+    @PutMapping(&quot;/{id}&quot;)
+    public ResponseEntity&lt;ChargingSessionDto&gt; stopChargingSession(@PathVariable(&quot;id&quot;) String sessionId) {
+<span class="fc" id="L88">        return ResponseEntity.status(OK).body(sessionManager.stopChargingSession(sessionId));</span>
+    }
+
+    /**
+     * This endpoint gives the summary of charging session managed within the specified time limit.
+     * &lt;br&gt;
+     * &lt;br&gt;
+     *
+     * @param timeInMinutes The default time limit is 1. Minute is the default time unit followed
+     * @return ChargingSessionSummaryDto
+     * @see io.everon.assignment.dto.ChargingSessionSummaryDto
+     */
+    @GetMapping(&quot;/summary&quot;)
+    public ResponseEntity&lt;ChargingSessionSummaryDto&gt; getChargingSummary(@RequestParam(required = false, defaultValue = &quot;1&quot;) int timeInMinutes) {
+<span class="fc" id="L102">        return ResponseEntity.status(OK).body(sessionManager.getChargingSummary(timeInMinutes));</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

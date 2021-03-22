@@ -1,0 +1,46 @@
+io/everon/assignment/service/ChargingSessionServiceImpl.java
+ io.everon.assignment.service.ChargingSessionServiceImpl
+io/everon/assignment/dto/ChargingStatusEnum.java
+ io.everon.assignment.dto.ChargingStatusEnum
+io/everon/assignment/exception/MvcExceptionHandler.java
+ io.everon.assignment.exception.MvcExceptionHandler
+io/everon/assignment/repository/SessionsRepositoryImpl.java
+ io.everon.assignment.repository.SessionsRepositoryImpl
+io/everon/assignment/controller/ChargingSessionController.java
+ io.everon.assignment.controller.ChargingSessionController
+io/everon/assignment/dto/ErrorResponseDto.java
+ io.everon.assignment.dto.ErrorResponseDto
+ io.everon.assignment.dto.ErrorResponseDto$ErrorResponseDtoBuilder
+io/everon/assignment/datasource/InMemDataSource.java
+ io.everon.assignment.datasource.InMemDataSource
+ io.everon.assignment.datasource.InMemDataSource$SingletonHolder
+io/everon/assignment/dto/ChargingSessionSummaryDto.java
+ io.everon.assignment.dto.ChargingSessionSummaryDto
+ io.everon.assignment.dto.ChargingSessionSummaryDto$ChargingSessionSummaryDtoBuilder
+io/everon/assignment/service/ChargingSessionService.java
+ io.everon.assignment.service.ChargingSessionService
+io/everon/assignment/dto/package-info.java
+ io.everon.assignment.dto.package-info
+io/everon/assignment/dto/ChargingSessionSummaryCollector.java
+ io.everon.assignment.dto.ChargingSessionSummaryCollector
+io/everon/assignment/datasource/package-info.java
+ io.everon.assignment.datasource.package-info
+io/everon/assignment/repository/package-info.java
+ io.everon.assignment.repository.package-info
+io/everon/assignment/controller/package-info.java
+ io.everon.assignment.controller.package-info
+io/everon/assignment/package-info.java
+ io.everon.assignment.package-info
+io/everon/assignment/repository/SessionsRepository.java
+ io.everon.assignment.repository.SessionsRepository
+io/everon/assignment/AssignmentApplication.java
+ io.everon.assignment.AssignmentApplication
+io/everon/assignment/service/package-info.java
+ io.everon.assignment.service.package-info
+io/everon/assignment/dto/ChargingSessionDto.java
+ io.everon.assignment.dto.ChargingSessionDto
+ io.everon.assignment.dto.ChargingSessionDto$ChargingSessionDtoBuilder
+io/everon/assignment/exception/package-info.java
+ io.everon.assignment.exception.package-info
+io/everon/assignment/exception/NotFoundException.java
+ io.everon.assignment.exception.NotFoundException

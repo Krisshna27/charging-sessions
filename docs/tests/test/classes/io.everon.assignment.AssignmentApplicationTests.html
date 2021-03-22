@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="x-ua-compatible" content="IE=edge"/>
+<title>Test results - AssignmentApplicationTests</title>
+<link href="../css/base-style.css" rel="stylesheet" type="text/css"/>
+<link href="../css/style.css" rel="stylesheet" type="text/css"/>
+<script src="../js/report.js" type="text/javascript"></script>
+</head>
+<body>
+<div id="content">
+<h1>AssignmentApplicationTests</h1>
+<div class="breadcrumbs">
+<a href="../index.html">all</a> &gt; 
+<a href="../packages/io.everon.assignment.html">io.everon.assignment</a> &gt; AssignmentApplicationTests</div>
+<div id="summary">
+<table>
+<tr>
+<td>
+<div class="summaryGroup">
+<table>
+<tr>
+<td>
+<div class="infoBox" id="tests">
+<div class="counter">2</div>
+<p>tests</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="failures">
+<div class="counter">0</div>
+<p>failures</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="ignored">
+<div class="counter">0</div>
+<p>ignored</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="duration">
+<div class="counter">0.791s</div>
+<p>duration</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</td>
+<td>
+<div class="infoBox success" id="successRate">
+<div class="percent">100%</div>
+<p>successful</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div id="tabs">
+<ul class="tabLinks">
+<li>
+<a href="#tab0">Tests</a>
+</li>
+<li>
+<a href="#tab1">Standard output</a>
+</li>
+</ul>
+<div id="tab0" class="tab">
+<h2>Tests</h2>
+<table>
+<thead>
+<tr>
+<th>Test</th>
+<th>Method name</th>
+<th>Duration</th>
+<th>Result</th>
+</tr>
+</thead>
+<tr>
+<td class="success">Should implement basic flow</td>
+<td class="success">shouldImplementSpec()</td>
+<td class="success">0.526s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">Should expose API on http://localhost:8000</td>
+<td class="success">shouldReturnEvenForZero()</td>
+<td class="success">0.265s</td>
+<td class="success">passed</td>
+</tr>
+</table>
+</div>
+<div id="tab1" class="tab">
+<h2>Standard output</h2>
+<span class="code">
+<pre>2021-03-22 23:22:07.566  INFO 79485 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Neither @ContextConfiguration nor @ContextHierarchy found for test class [io.everon.assignment.AssignmentApplicationTests], using SpringBootContextLoader
+2021-03-22 23:22:07.571  INFO 79485 --- [    Test worker] o.s.t.c.support.AbstractContextLoader    : Could not detect default resource locations for test class [io.everon.assignment.AssignmentApplicationTests]: no resource found for suffixes {-context.xml, Context.groovy}.
+2021-03-22 23:22:07.572  INFO 79485 --- [    Test worker] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [io.everon.assignment.AssignmentApplicationTests]: AssignmentApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2021-03-22 23:22:07.606  INFO 79485 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration io.everon.assignment.AssignmentApplication for test class io.everon.assignment.AssignmentApplicationTests
+2021-03-22 23:22:07.618  INFO 79485 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.event.ApplicationEventsTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
+2021-03-22 23:22:07.620  INFO 79485 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@1cdf13b6, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@56c71a16, org.springframework.test.context.event.ApplicationEventsTestExecutionListener@3d28aa25, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@4cf02690, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@28d6de1b, org.springframework.test.context.support.DirtiesContextTestExecutionListener@46af76bd, org.springframework.test.context.event.EventPublishingTestExecutionListener@3eae95cf, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@7327e02c, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@6d1fde55, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@50b847d5, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@1a72a0e0, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener@56981502, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@456684f2]
+2021-03-22 23:22:07.866  INFO 79485 --- [    Test worker] i.e.a.AssignmentApplicationTests         : Starting AssignmentApplicationTests using Java 15.0.1 on Krisshnas-MBP.home with PID 79485 (started by krisshnakumarmone in /Users/krisshnakumarmone/Documents/personal/pet/charging-sessions/assignment)
+2021-03-22 23:22:07.874  INFO 79485 --- [    Test worker] i.e.a.AssignmentApplicationTests         : No active profile set, falling back to default profiles: default
+2021-03-22 23:22:08.956  INFO 79485 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8000 (http)
+2021-03-22 23:22:08.971  INFO 79485 --- [    Test worker] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-03-22 23:22:08.971  INFO 79485 --- [    Test worker] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.43]
+2021-03-22 23:22:09.106  INFO 79485 --- [    Test worker] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2021-03-22 23:22:09.106  INFO 79485 --- [    Test worker] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1222 ms
+2021-03-22 23:22:09.529  INFO 79485 --- [    Test worker] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2021-03-22 23:22:10.397  INFO 79485 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8000 (http) with context path ''
+2021-03-22 23:22:10.415  INFO 79485 --- [    Test worker] i.e.a.AssignmentApplicationTests         : Started AssignmentApplicationTests in 2.788 seconds (JVM running for 11.447)
+2021-03-22 23:22:10.574  INFO 79485 --- [nio-8000-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-03-22 23:22:10.576  INFO 79485 --- [nio-8000-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2021-03-22 23:22:10.578  INFO 79485 --- [nio-8000-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+</pre>
+</span>
+</div>
+</div>
+<div id="footer">
+<p>
+<div>
+<label class="hidden" id="label-for-line-wrapping-toggle" for="line-wrapping-toggle">Wrap lines
+<input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
+</label>
+</div>Generated by 
+<a href="http://www.gradle.org">Gradle 6.8.3</a> at 22 Mar 2021, 23:22:13</p>
+</div>
+</div>
+</body>
+</html>

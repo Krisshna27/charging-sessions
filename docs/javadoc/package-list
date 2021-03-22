@@ -1,0 +1,7 @@
+io.everon.assignment
+io.everon.assignment.controller
+io.everon.assignment.datasource
+io.everon.assignment.dto
+io.everon.assignment.exception
+io.everon.assignment.repository
+io.everon.assignment.service

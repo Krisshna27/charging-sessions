@@ -1,0 +1,8 @@
+io/everon/assignment/service/ChargingSessionServiceImplTest.java
+ io.everon.assignment.service.ChargingSessionServiceImplTest
+io/everon/assignment/AssignmentApplicationTests.java
+ io.everon.assignment.AssignmentApplicationTests
+io/everon/assignment/repository/SessionsRepositoryImplTest.java
+ io.everon.assignment.repository.SessionsRepositoryImplTest
+io/everon/assignment/controller/ChargingSessionControllerTest.java
+ io.everon.assignment.controller.ChargingSessionControllerTest

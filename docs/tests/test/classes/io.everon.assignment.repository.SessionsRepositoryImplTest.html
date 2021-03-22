@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="x-ua-compatible" content="IE=edge"/>
+<title>Test results - SessionsRepositoryImplTest</title>
+<link href="../css/base-style.css" rel="stylesheet" type="text/css"/>
+<link href="../css/style.css" rel="stylesheet" type="text/css"/>
+<script src="../js/report.js" type="text/javascript"></script>
+</head>
+<body>
+<div id="content">
+<h1>SessionsRepositoryImplTest</h1>
+<div class="breadcrumbs">
+<a href="../index.html">all</a> &gt; 
+<a href="../packages/io.everon.assignment.repository.html">io.everon.assignment.repository</a> &gt; SessionsRepositoryImplTest</div>
+<div id="summary">
+<table>
+<tr>
+<td>
+<div class="summaryGroup">
+<table>
+<tr>
+<td>
+<div class="infoBox" id="tests">
+<div class="counter">5</div>
+<p>tests</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="failures">
+<div class="counter">0</div>
+<p>failures</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="ignored">
+<div class="counter">0</div>
+<p>ignored</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="duration">
+<div class="counter">0.733s</div>
+<p>duration</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</td>
+<td>
+<div class="infoBox success" id="successRate">
+<div class="percent">100%</div>
+<p>successful</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div id="tabs">
+<ul class="tabLinks">
+<li>
+<a href="#tab0">Tests</a>
+</li>
+<li>
+<a href="#tab1">Standard output</a>
+</li>
+</ul>
+<div id="tab0" class="tab">
+<h2>Tests</h2>
+<table>
+<thead>
+<tr>
+<th>Test</th>
+<th>Duration</th>
+<th>Result</th>
+</tr>
+</thead>
+<tr>
+<td class="success">delete()</td>
+<td class="success">0.015s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">findAll()</td>
+<td class="success">0.011s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">findById()</td>
+<td class="success">0.011s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">save()</td>
+<td class="success">0.013s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">summary()</td>
+<td class="success">0.683s</td>
+<td class="success">passed</td>
+</tr>
+</table>
+</div>
+<div id="tab1" class="tab">
+<h2>Standard output</h2>
+<span class="code">
+<pre>23:22:01.202 [Test worker] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating CacheAwareContextLoaderDelegate from class [org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate]
+23:22:01.241 [Test worker] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating BootstrapContext using constructor [public org.springframework.test.context.support.DefaultBootstrapContext(java.lang.Class,org.springframework.test.context.CacheAwareContextLoaderDelegate)]
+23:22:01.288 [Test worker] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating TestContextBootstrapper for test class [io.everon.assignment.repository.SessionsRepositoryImplTest] from class [org.springframework.boot.test.context.SpringBootTestContextBootstrapper]
+23:22:01.308 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Neither @ContextConfiguration nor @ContextHierarchy found for test class [io.everon.assignment.repository.SessionsRepositoryImplTest], using SpringBootContextLoader
+23:22:01.318 [Test worker] DEBUG org.springframework.test.context.support.AbstractContextLoader - Did not detect default resource location for test class [io.everon.assignment.repository.SessionsRepositoryImplTest]: class path resource [io/everon/assignment/repository/SessionsRepositoryImplTest-context.xml] does not exist
+23:22:01.320 [Test worker] DEBUG org.springframework.test.context.support.AbstractContextLoader - Did not detect default resource location for test class [io.everon.assignment.repository.SessionsRepositoryImplTest]: class path resource [io/everon/assignment/repository/SessionsRepositoryImplTestContext.groovy] does not exist
+23:22:01.320 [Test worker] INFO org.springframework.test.context.support.AbstractContextLoader - Could not detect default resource locations for test class [io.everon.assignment.repository.SessionsRepositoryImplTest]: no resource found for suffixes {-context.xml, Context.groovy}.
+23:22:01.321 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [io.everon.assignment.repository.SessionsRepositoryImplTest]: SessionsRepositoryImplTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+23:22:01.397 [Test worker] DEBUG org.springframework.test.context.support.ActiveProfilesUtils - Could not find an 'annotation declaring class' for annotation type [org.springframework.test.context.ActiveProfiles] and class [io.everon.assignment.repository.SessionsRepositoryImplTest]
+23:22:01.507 [Test worker] DEBUG org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider - Identified candidate component class: file [/Users/krisshnakumarmone/Documents/personal/pet/charging-sessions/assignment/build/classes/java/main/io/everon/assignment/AssignmentApplication.class]
+23:22:01.509 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration io.everon.assignment.AssignmentApplication for test class io.everon.assignment.repository.SessionsRepositoryImplTest
+23:22:01.662 [Test worker] DEBUG org.springframework.boot.test.context.SpringBootTestContextBootstrapper - @TestExecutionListeners is not present for class [io.everon.assignment.repository.SessionsRepositoryImplTest]: using defaults.
+23:22:01.663 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.event.ApplicationEventsTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
+23:22:01.678 [Test worker] DEBUG org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Skipping candidate TestExecutionListener [org.springframework.test.context.transaction.TransactionalTestExecutionListener] due to a missing dependency. Specify custom listener classes or make the default listener classes and their required dependencies available. Offending class: [org/springframework/transaction/interceptor/TransactionAttributeSource]
+23:22:01.679 [Test worker] DEBUG org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Skipping candidate TestExecutionListener [org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener] due to a missing dependency. Specify custom listener classes or make the default listener classes and their required dependencies available. Offending class: [org/springframework/transaction/interceptor/TransactionAttribute]
+23:22:01.680 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@30b90370, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@6bf74e8c, org.springframework.test.context.event.ApplicationEventsTestExecutionListener@21270345, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@3a65f862, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@423fdedd, org.springframework.test.context.support.DirtiesContextTestExecutionListener@136d6b38, org.springframework.test.context.event.EventPublishingTestExecutionListener@ac97f3b, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@1f7a20e8, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@238fccec, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@5bc3470e, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@1a32cbea, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener@5401d524, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@9349be4]
+23:22:01.714 [Test worker] DEBUG org.springframework.test.context.support.TestPropertySourceUtils - Adding inlined properties to environment: {spring.jmx.enabled=false, org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true}
+2021-03-22 23:22:02.526  INFO 79485 --- [    Test worker] i.e.a.r.SessionsRepositoryImplTest       : Starting SessionsRepositoryImplTest using Java 15.0.1 on Krisshnas-MBP.home with PID 79485 (started by krisshnakumarmone in /Users/krisshnakumarmone/Documents/personal/pet/charging-sessions/assignment)
+2021-03-22 23:22:02.551  INFO 79485 --- [    Test worker] i.e.a.r.SessionsRepositoryImplTest       : No active profile set, falling back to default profiles: default
+2021-03-22 23:22:05.522  INFO 79485 --- [    Test worker] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2021-03-22 23:22:06.717  INFO 79485 --- [    Test worker] i.e.a.r.SessionsRepositoryImplTest       : Started SessionsRepositoryImplTest in 4.991 seconds (JVM running for 7.749)
+</pre>
+</span>
+</div>
+</div>
+<div id="footer">
+<p>
+<div>
+<label class="hidden" id="label-for-line-wrapping-toggle" for="line-wrapping-toggle">Wrap lines
+<input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
+</label>
+</div>Generated by 
+<a href="http://www.gradle.org">Gradle 6.8.3</a> at 22 Mar 2021, 23:22:13</p>
+</div>
+</div>
+</body>
+</html>
